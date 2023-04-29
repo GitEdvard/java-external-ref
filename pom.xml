@@ -23,9 +23,31 @@
       <version>3.3.0</version>
       <configuration>
         <archive>
-          <manifestFile>MANIFEST.MF</manifestFile>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>dependency/</classpathPrefix>
+            <mainClass>Main</mainClass>
+          </manifest>
         </archive>
       </configuration>
+    </plugin>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-dependency-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>copy-dependencies</id>
+          <phase>package</phase>
+          <goals>
+            <goal>copy-dependencies</goal>
+          </goals>
+          <configuration>
+            <useBaseVersion>false</useBaseVersion>
+            <overWriteReleases>false</overWriteReleases>
+            <overWriteSnapshots>true</overWriteSnapshots>
+          </configuration>
+        </execution>
+      </executions>
     </plugin>
   </plugins>
 </build>
@@ -37,3 +59,4 @@
   </dependency>
 </dependencies>
 </project>
+
